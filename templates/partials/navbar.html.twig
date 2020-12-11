@@ -1,0 +1,15 @@
+{% verbatim %}
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <a class="navbar-brand col-sm-6 col-md-4 mr-0" href="/">We Cine</a>
+        <div id="app-autocomplete-here" class="col-sm-6 col-md-4 mr-0">
+            <input type="text" class="form-control" v-model="input" placeholder="Type film name..." v-on:keyup.enter="onKeyPressEnter($event)" v-on:keyup="onKeypressSearchInput($event)" v-on:keydown="onKeypressSearchInput($event)">
+            <div class="autocomplete-suggestions-container col-12" v-if="suggestions.length > 0">
+                <ul>
+                    <li v-for="suggestion in suggestions">
+                        <span v-on:click="onClickSuggest(suggestion)">{{ suggestion.lib }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endverbatim %}

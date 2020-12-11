@@ -1,0 +1,7 @@
+services:
+    App\Tests\Base\TheMovieDBRequesterServiceStub:
+      decorates: App\Service\TheMovieDBRequesterService
+      arguments:
+        - '@Symfony\Contracts\HttpClient\HttpClientInterface'
+        - '@Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface'
+        - '@logger'

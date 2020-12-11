@@ -1,0 +1,18 @@
+.autocomplete-suggestions-container {
+    position: absolute;
+    background-color: #CECECE;
+}
+.autocomplete-suggestions-container ul li span {
+    cursor: pointer;
+}
+embed {
+    margin: 0 auto;
+}
+
+.movie-card {
+    border: 1px solid #CECECE;
+}
+.btn {
+    max-height: 50px;
+    cursor: pointer;
+}

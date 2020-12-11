@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    {{ parent() }}
+    <div class="container-fluid" id="app">
+        <div class="row mt-5 mb-5">
+            <main role="main" class="col-12">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    {% if trailer != null and trailer.key is defined %}
+                        <embed src="https://www.youtube.com/embed/{{ trailer.key }}" allowfullscreen="true"
+                               style="width: 80%;height:50vh;">
+                    {% endif %}
+                </div>
+
+            </main>
+        </div>
+        <div class="row">
+            <nav class="col-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column btn-group btn-group-toggle">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Genres</span>
+                    </h6>
+                    {% if genres is defined and genres.genres is defined %}
+                        {% for genre in genres.genres %}
+                            <li class="nav-item select-genre">
+                                <label for="{{ genre.id }}" class="btn btn-primary"> <input v-on:change="onClickGenre({{ genre.id }})" type="radio" id="{{ genre.id }}"
+                                                                     name="genre" value="{{ genre.id }}">{{ genre.name }}</label>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+            <div class="col-10">
+                {% include 'partials/vue-movies.html.twig' %}
+                {% if movies is defined %}
+                    <div id="movies-container" class="p-5">
+                        {% for movie in movies %}
+                            {% include 'partials/movie.html.twig' with {'movie' : movie} %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

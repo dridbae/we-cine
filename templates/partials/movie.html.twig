@@ -1,0 +1,52 @@
+<div class="row mb-5 movie-card p-5">
+        <div class="col">
+            <img src="https://image.tmdb.org/t/p/w500/{{ movie.getPosterPath }}"/>
+        </div>
+        <div class="col">
+            <h3>{{ movie.title }}</h3>
+            <h4>{{ movie.getReleaseDate|date("Y") }}</h4>
+            <p>{{ movie.getOverview }}</p>
+        </div>
+        <div class="col align-self-end col-2 text-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{ movie.id }}">
+                Show details
+            </button>
+        </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modal{{ movie.id }}" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ movie.getOriginalTitle }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            {% if movie.trailer is defined and movie.trailer.key is defined %}
+                                <embed src="https://www.youtube.com/embed/{{ movie.trailer.key }}" allowfullscreen="true"
+                                       style="width: 100%;height:50vh;">
+                            {% endif %}
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <h2>{{ movie.title }} ({{ movie.getOriginalTitle }})</h2>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <p>Release Year : {{ movie.getReleaseDate|date("Y") }}</p>
+                                <p>Average note : {{ movie.getVoteAverage }} for {{ movie.getVoteCount }} note</p>
+                                <p>Overview : {{ movie.getOverview }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
